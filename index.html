@@ -100,6 +100,10 @@
 	        var links = document.querySelectorAll('.links-container a');
 	        for (var i = 0; i < links.length; i++) {
 	                var link = links[i]; 
+	                if (link.addEventListener) {
+	                    printToConsole("initialising link");
+	                }
+	                
 	                link.addEventListener('click', function (e) {
 	                e.preventDefault();
 	                e.stopPropagation();
