@@ -1,5 +1,5 @@
 /*global define, require*/
-define('kandl/media/miniaudio', function () {
+define('script/miniaudio', function () {
     'use strict';
 
     var currentLink = null;
