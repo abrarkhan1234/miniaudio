@@ -89,10 +89,10 @@ define('kandl/media/miniaudio', function () {
                         links[j].innerHTML = 'Play';
                         links[j].className = '';
                     }
-                    var playlist = this.getAttribute('data-src');
+                    var datapid = this.getAttribute('data-pid');
                     this.innerHTML = 'Loading';
                     this.className = 'loading';
-                    mediaPlayer.loadPlaylist(playlist, true);
+                    mediaPlayer.loadPlaylist('http://www.bbc.co.uk/iplayer/playlist/' + datapid, true);
                     playAudio = true;
                 }
             });
