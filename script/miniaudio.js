@@ -71,31 +71,34 @@ define('kandl/media/miniaudio', function () {
         var links = document.querySelectorAll('.links-container a');
         for (var i = 0; i < links.length; i++) {
                 var link = links[i]; 
-                link.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                printToConsole('link clicked');
-                currentLink = this;
+                link.removeEventListener("click", clickHandler);
+                link.addEventListener('click', clickHandler);
+        }
 
-                if (this.innerHTML === 'Playing') {
-                    mediaPlayer.stop();
-                    this.innerHTML = 'Play';
-                } else if (this.innerHTML === 'Loading') {
-                    printToConsole('play cancelled');
-                    playAudio = false;
-                    this.innerHTML = 'Cancelled';
-                } else {
-                    for (var j = 0; j < links.length; j++) {
-                        links[j].innerHTML = 'Play';
-                        links[j].className = '';
-                    }
-                    var datapid = this.getAttribute('data-pid');
-                    this.innerHTML = 'Loading';
-                    this.className = 'loading';
-                    mediaPlayer.loadPlaylist('http://www.bbc.co.uk/iplayer/playlist/' + datapid, true);
-                    playAudio = true;
+        function clickHandler(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            printToConsole('link clicked');
+            currentLink = this;
+
+            if (this.innerHTML === 'Playing') {
+                mediaPlayer.stop();
+                this.innerHTML = 'Play';
+            } else if (this.innerHTML === 'Loading') {
+                printToConsole('play cancelled');
+                playAudio = false;
+                this.innerHTML = 'Cancelled';
+            } else {
+                for (var j = 0; j < links.length; j++) {
+                    links[j].innerHTML = 'Play';
+                    links[j].className = '';
                 }
-            });
+                var datapid = this.getAttribute('data-pid');
+                this.innerHTML = 'Loading';
+                this.className = 'loading';
+                mediaPlayer.loadPlaylist('http://www.bbc.co.uk/iplayer/playlist/' + datapid, true);
+                playAudio = true;
+            }
         }
         
         function printToConsole(string) {
@@ -107,7 +110,7 @@ define('kandl/media/miniaudio', function () {
         }
         
         function clearConsole() {
-            errorContainer.innerHTML = '';        
+            errorContainer.innerHTML = '';
         }
     });
 });
