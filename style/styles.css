@@ -1,0 +1,22 @@
+h2 {
+	margin:0;
+	padding:0;
+}
+
+#content-panel {
+	width:800px;
+	float:left;
+}
+
+#error-console {
+	width:600px;
+	float:left;
+}
+
+#mediaPlayer {
+    height: 1px;
+    left: -369px;
+    position: absolute;
+    top: -48px;
+    width: 1px;
+}
