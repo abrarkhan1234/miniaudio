@@ -8,12 +8,12 @@
 	<div id="content-panel">
 		<div class="links-container"> 
 			<ul> 
-				<li><span>Polluted Water</span><a data-src="http://www.bbc.co.uk/iplayer/playlist/p01wztdy" href="#">Play</a></li> 
-				<li><span>Salt Water</span><a data-src="http://www.bbc.co.uk/iplayer/playlist/p01x1fxw" href="#">Play</a></li> 
-				<li><span>Drinking Water</span><a data-src="http://www.bbc.co.uk/iplayer/playlist/p01x1fzn/" href="#">Play</a></li> 
-				<li><span>Scott Mills</span><a data-src="http://www.bbc.co.uk/iplayer/playlist/p01nbkcj" href="#">Play</a></li> 
-				<li><span>Reports</span><a data-src="http://www.bbc.co.uk/iplayer/playlist/p01nbkvl" href="#">Play</a></li> 
-				<li><span>Bobby Friction</span><a data-src="http://www.bbc.co.uk/iplayer/playlist/p01nbk3q/" href="#">Play</a></li> 
+				<li><span>Polluted Water</span><a data-pid="p01wztdy" href="#">Play</a></li> 
+				<li><span>Salt Water</span><a data-pid="p01x1fxw" href="#">Play</a></li> 
+				<li><span>Drinking Water</span><a data-pid="p01x1fzn/" href="#">Play</a></li> 
+				<li><span>Scott Mills</span><a data-pid="p01nbkcj" href="#">Play</a></li> 
+				<li><span>Reports</span><a data-pid="p01nbkvl" href="#">Play</a></li> 
+				<li><span>Bobby Friction</span><a data-pid="p01nbk3q/" href="#">Play</a></li> 
 			</ul> 
 		</div>
 		<br />
@@ -118,10 +118,10 @@
 	                        links[j].innerHTML = 'Play';
 	                        links[j].className = '';
 	                    }
-	                    var playlist = this.getAttribute('data-src');
+	                    var datapid = this.getAttribute('data-pid');
 	                    this.innerHTML = 'Loading';
 	                    this.className = 'loading';
-	                    mediaPlayer.loadPlaylist(playlist, true);
+	                    mediaPlayer.loadPlaylist('http://www.bbc.co.uk/iplayer/playlist/' + datapid, true);
 	                    playAudio = true;
 	                }
 	            });
