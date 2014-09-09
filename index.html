@@ -1,39 +1,39 @@
 <html>
 <head>
-	<title>Miniaudio Player Spike</title>
-	<link media="screen" href="style/styles.css" type="text/css" rel="stylesheet">
+    <title>Miniaudio Player Spike</title>
+    <link media="screen" href="style/styles.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<h1>Mini Audio Player Spike</h1>
-	<div id="content-panel">
-		<div class="links-container"> 
-			<ul> 
-				<li><span>Polluted Water</span><a data-pid="p01wztdy" href="#">Play</a></li> 
-				<li><span>Salt Water</span><a data-pid="p01x1fxw" href="#">Play</a></li> 
-				<li><span>Drinking Water</span><a data-pid="p01x1fzn/" href="#">Play</a></li> 
-				<li><span>Scott Mills</span><a data-pid="p01nbkcj" href="#">Play</a></li> 
-				<li><span>Reports</span><a data-pid="p01nbkvl" href="#">Play</a></li> 
-				<li><span>Bobby Friction</span><a data-pid="p01nbk3q/" href="#">Play</a></li> 
-			</ul> 
-		</div>
-		<br />
-		<div id="media-player" style="height:270px;width:480px;"></div><br />
-	</div>
+    <h1>Mini Audio Player Spike</h1>
+    <div id="content-panel">
+        <div class="links-container"> 
+            <ul> 
+                <li><span>Polluted Water</span><a data-pid="p01wztdy" href="#">Play</a></li> 
+                <li><span>Salt Water</span><a data-pid="p01x1fxw" href="#">Play</a></li> 
+                <li><span>Drinking Water</span><a data-pid="p01x1fzn/" href="#">Play</a></li> 
+                <li><span>Scott Mills</span><a data-pid="p01nbkcj" href="#">Play</a></li> 
+                <li><span>Reports</span><a data-pid="p01nbkvl" href="#">Play</a></li> 
+                <li><span>Bobby Friction</span><a data-pid="p01nbk3q/" href="#">Play</a></li> 
+            </ul> 
+        </div>
+        <br />
+        <div id="media-player" style="height:270px;width:480px;"></div><br />
+    </div>
 
-	<div id="error-console"> 
-		<h2>Error Console</h2> 
-		<span class="reset"><a href="#">Reset Console</a></span> 
-		<div id="error-container"></div> 
-	</div>
-	<script type="text/javascript" src="http://static.bbci.co.uk/frameworks/requirejs/0.13.0/sharedmodules/require.js"></script>
-	<script type="text/javascript">
-		bbcRequireMap = {
-			"jquery-1.9":"http://static.bbci.co.uk/frameworks/jquery/0.3.0/sharedmodules/jquery-1.9.1",
-			"swfobject-2":"http://static.bbci.co.uk/frameworks/swfobject/0.1.10/sharedmodules/swfobject-2",
-				"bump-3":"http://emp.bbci.co.uk/emp/bump-3/bump-3"
-		}
-		require({ paths: bbcRequireMap, waitSeconds: 30 });
-		require(["script/miniaudio"], function(media) {});
-	</script>
+    <div id="error-console"> 
+        <h2>Error Console</h2> 
+        <span class="reset"><a href="#">Reset Console</a></span> 
+        <div id="error-container"></div> 
+    </div>
+    <script type="text/javascript" src="http://static.bbci.co.uk/frameworks/requirejs/0.13.0/sharedmodules/require.js"></script>
+    <script type="text/javascript">
+        bbcRequireMap = {
+            "jquery-1.9":"http://static.bbci.co.uk/frameworks/jquery/0.3.0/sharedmodules/jquery-1.9.1",
+            "swfobject-2":"http://static.bbci.co.uk/frameworks/swfobject/0.1.10/sharedmodules/swfobject-2",
+                "bump-3":"http://emp.bbci.co.uk/emp/bump-3/bump-3"
+        }
+        require({ paths: bbcRequireMap, waitSeconds: 30 });
+        require(["script/miniaudio"], function(media) {});
+    </script>
 </body>
 </html>
