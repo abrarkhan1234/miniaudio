@@ -26,7 +26,7 @@
 		<div id="error-container"></div> 
 	</div>
 	<script type="text/javascript" src="http://static.bbci.co.uk/frameworks/requirejs/0.13.0/sharedmodules/require.js"></script>
-
+    <script type="text/javascript" src="script/miniaudio.js"></script>
 	<script type="text/javascript">
 		bbcRequireMap = {
 			"jquery-1.9":"http://static.bbci.co.uk/frameworks/jquery/0.3.0/sharedmodules/jquery-1.9.1",
@@ -34,7 +34,6 @@
 				"bump-3":"http://emp.bbci.co.uk/emp/bump-3/bump-3"
 		}
 		require({ paths: bbcRequireMap, waitSeconds: 30 });
-		require(["script/miniaudio"], function(media) {});
 	</script>
 </body>
 </html>
