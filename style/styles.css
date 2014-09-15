@@ -1,22 +1,22 @@
 h2 {
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 }
 
 #content-panel {
-	width:800px;
-	float:left;
+	width: 600px;
+	float: left;
 }
 
 #error-console {
-	width:600px;
-	float:left;
+    background-color:#be212f;
+    color: #fff;
+    float: left;
+    padding: 10px;
 }
 
-#mediaPlayer {
-    height: 1px;
-    left: -369px;
+#media-player {
+    left: 0;
     position: absolute;
-    top: -48px;
-    width: 1px;
+    top: 0;
 }

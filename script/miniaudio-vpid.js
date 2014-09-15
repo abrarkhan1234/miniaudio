@@ -1,5 +1,5 @@
 /*global define, require*/
-define('script/miniaudio', function () {
+define('script/miniaudio-vpid', function () {
     'use strict';
 
     var currentLink = null;
@@ -7,6 +7,7 @@ define('script/miniaudio', function () {
     var playAudio = false;
     var errorContainer = document.querySelector('#error-container');
     var playerElement = document.querySelector('#media-player');
+    var eventListnersArray = [];
     require(['bump-3'], function ($) {
         var settings = {
             product: 'iplayer',
@@ -22,10 +23,11 @@ define('script/miniaudio', function () {
         mediaPlayer.load('http://www.bbc.co.uk/iplayer/playlist/p01nbk3q');
         playerElement.style.width = '1px';
         playerElement.style.height = '1px';
-        
+
         mediaPlayer.bind('initialised', function () {
-            printToConsole('player initialised');
-        });
+                printToConsole('player initialised');
+            }
+        );
 
         mediaPlayer.bind('playing', function () {
             if (playAudio === false ) {
@@ -37,7 +39,7 @@ define('script/miniaudio', function () {
                 currentLink.className = 'playing';
             }
         });
-        
+
         mediaPlayer.bind('ended', function () {
             printToConsole('player stopped');
             currentLink.innerHTML = 'Stopped';
@@ -49,6 +51,7 @@ define('script/miniaudio', function () {
         });
 
         mediaPlayer.bind('error', function (e) {
+            currentLink.innerHTML = 'Error '+ e.code + ' Detail '+e.detail + ' Description' + e.description + '<br />';
             var span = document.createElement('span');
             span.className = 'error-message';
             span.innerHTML = errorNumber + ') Error Code = ' + e.code +
@@ -56,16 +59,16 @@ define('script/miniaudio', function () {
             errorContainer.appendChild(span);
             errorNumber++;
         });
-        
+
         var clearButton = document.querySelector('#error-console .reset a');
         clearButton.addEventListener('click', function (e) {
-			e.preventDefault();
+            e.preventDefault();
             clearConsole();
         });
 
         var links = document.querySelectorAll('.links-container a');
         for (var i = 0; i < links.length; i++) {
-                var link = links[i]; 
+                var link = links[i];
                 link.addEventListener('click', clickHandler);
         }
 
@@ -77,25 +80,53 @@ define('script/miniaudio', function () {
 
             if (this.innerHTML === 'Playing') {
                 mediaPlayer.stop();
-                this.innerHTML = 'Stopped';
+                currentLink.innerHTML = 'Stopped';
             } else if (this.innerHTML === 'Loading') {
                 printToConsole('play cancelled');
                 playAudio = false;
-                mediaPlayer.stop();
                 this.innerHTML = 'Cancelled';
             } else {
                 for (var j = 0; j < links.length; j++) {
                     links[j].innerHTML = 'Play';
                     links[j].className = '';
                 }
-                var datapid = this.getAttribute('data-pid');
                 this.innerHTML = 'Loading';
                 this.className = 'loading';
-                mediaPlayer.loadPlaylist('http://www.bbc.co.uk/iplayer/playlist/' + datapid, true);
+
+                var playlistObject = getPlaylistObject(currentLink);
+                if ('items' in playlistObject){
+                    mediaPlayer.loadPlaylist(playlistObject, true);
+                    printToConsole('playing using vpid');
+                } else if ('legacyPlaylist' in playlistObject){
+                    mediaPlayer.loadPlaylist(playlistObject.legacyPlaylist, true);
+                    printToConsole('playing using data-pid');
+                }
                 playAudio = true;
             }
         }
-        
+
+        function getPlaylistObject(div) {
+            var obj = {};
+            // different player sources depending on the data
+            if (div.hasAttribute('data-pid') && 
+                div.getAttribute('data-pid') !== '') {
+                 obj.legacyPlaylist =
+                     'http://www.bbc.co.uk/iplayer/playlist/' +
+                         div.getAttribute('data-pid');
+            } else if (div.hasAttribute('data-playlist') && 
+                    div.getAttribute('data-playlist') !== '') {
+                 obj.legacyPlaylist = div.getAttribute('data-playlist');
+            }
+
+            // VPID can be empty so check it exists.
+            if (div.hasAttribute('data-vpid') && 
+                div.getAttribute('data-vpid') !== '') {
+                obj.items = [{vpid:div.getAttribute('data-vpid')}];
+            }
+
+            return obj;
+        } 
+
         function printToConsole(string) {
             var span = document.createElement('span');
             span.className = 'error-message';
@@ -103,7 +134,7 @@ define('script/miniaudio', function () {
             errorContainer.appendChild(span);
             errorNumber++;
         }
-        
+
         function clearConsole() {
             errorContainer.innerHTML = '';
         }

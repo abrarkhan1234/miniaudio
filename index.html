@@ -6,34 +6,46 @@
 <body>
     <h1>Mini Audio Player Spike</h1>
     <div id="content-panel">
-        <div class="links-container"> 
-            <ul> 
-                <li><span>Polluted Water</span><a data-pid="p01wztdy" href="#">Play</a></li> 
-                <li><span>Salt Water</span><a data-pid="p01x1fxw" href="#">Play</a></li> 
-                <li><span>Drinking Water</span><a data-pid="p01x1fzn/" href="#">Play</a></li> 
-                <li><span>Scott Mills</span><a data-pid="p01nbkcj" href="#">Play</a></li> 
-                <li><span>Reports</span><a data-pid="p01nbkvl" href="#">Play</a></li> 
-                <li><span>Bobby Friction</span><a data-pid="p01nbk3q/" href="#">Play</a></li> 
-            </ul> 
+        <div class="links-container">
+            <ul>
+                <li><span>clip using vpid</span><a data-pid="p011t5vn" data-vpid="p011t5vq" href="#">Play</a></li> 
+                <li><span>polluted water - (1 second Clip)</span><a data-pid="p01wztdy" href="#">Play</a></li>
+                <li><span>salt water</span><a data-pid="p01x1fxw" href="#">Play</a></li>
+                <li><span>drinking water</span><a data-pid="p01x1fzn" href="#">Play</a></li>
+                <li><span>to consume</span><a data-pid="p01x1ft9" href="#">Play</a></li>
+                <li><span>Our Reserves</span><a data-pid="p01x1g75" href="#">Play</a></li>
+                <li><span>Recycling</span><a data-pid="p01x1h2r" href="#">Play</a></li>
+                <li><span>To become exhausted</span><a data-pid="p01x1gln" href="#">Play</a></li>
+                <li><span>little by little</span><a data-pid="p01x1gjz" href="#">Play</a></li>
+                <li><span>the greenhouse effect</span><a data-pid="p01x1hsy" href="#">Play</a></li>
+                <li><span>the extinction of some animal specie - (3 second Clip)</span><a data-pid="p01x1h5j" href="#">Play</a></li>
+                <li><span>to save</span><a data-pid="p01x1gx9" href="#">Play</a></li>
+                <li><span>to become</span><a data-pid="p01x1jm3" href="#">Play</a></li>
+                <li><span>pollution</span><a data-pid="p01x1jzb" href="#">Play</a></li>
+                <li><span>the atmosphere</span><a data-pid="p01x1kg9" href="#">Play</a></li>
+                <li><span>ecosystems</span><a data-pid="p01x1l08" href="#">Play</a></li>
+                <li><span>earth</span><a data-pid="p01x1lbj" href="#">Play</a></li>
+                <li><span>to use</span><a data-pid="p01x1nr7" href="#">Play</a></li>
+                <li><span>to reuse</span><a data-pid="p01x1g3c" href="#">Play</a></li>
+            </ul>
         </div>
         <br />
         <div id="media-player" style="height:270px;width:480px;"></div><br />
     </div>
-
-    <div id="error-console"> 
-        <h2>Error Console</h2> 
-        <span class="reset"><a href="#">Reset Console</a></span> 
-        <div id="error-container"></div> 
+    <div id="error-console">
+        <h2>Trace Console</h2> 
+        <span class="reset"><a href="#">Reset Console</a></span>
+        <div id="error-container"></div>
     </div>
     <script type="text/javascript" src="http://static.bbci.co.uk/frameworks/requirejs/0.13.0/sharedmodules/require.js"></script>
     <script type="text/javascript">
         bbcRequireMap = {
             "jquery-1.9":"http://static.bbci.co.uk/frameworks/jquery/0.3.0/sharedmodules/jquery-1.9.1",
             "swfobject-2":"http://static.bbci.co.uk/frameworks/swfobject/0.1.10/sharedmodules/swfobject-2",
-                "bump-3":"http://emp.bbci.co.uk/emp/bump-3/bump-3"
+                "bump-3":"http://static.int.bbc.co.uk/smp/js/bump-3/bump-3"
         }
         require({ paths: bbcRequireMap, waitSeconds: 30 });
-        require(["script/miniaudio"], function(media) {});
+        require(["script/miniaudio-vpid"], function(media) {});
     </script>
 </body>
 </html>
